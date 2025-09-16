@@ -224,26 +224,86 @@
             width: 120px;
             height: 120px;
             margin: 0 auto 32px;
-            background: #f5f5f7;
+            background: linear-gradient(135deg, #007aff 0%, #0056cc 100%);
             border-radius: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3);
+        }
+
+        .problem-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
         }
 
-        .problem-visual::after {
+        .problem-icon::before {
             content: '';
             position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            background: linear-gradient(45deg, #ff3b30, #ff9500, #ffcc02);
-            border-radius: 28px;
-            z-index: -1;
-            opacity: 0.1;
+            width: 24px;
+            height: 24px;
+            background: #007aff;
+            border-radius: 4px;
+        }
+
+        .phone-icon::before {
+            width: 16px;
+            height: 24px;
+            border-radius: 6px;
+            border: 2px solid #007aff;
+            background: transparent;
+        }
+
+        .phone-icon::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 2px;
+            background: #007aff;
+            top: 20px;
+            border-radius: 1px;
+        }
+
+        .money-icon::before {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #007aff;
+            border-radius: 50%;
+            background: transparent;
+        }
+
+        .money-icon::after {
+            content: '$';
+            position: absolute;
+            color: #007aff;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .paper-icon::before {
+            width: 18px;
+            height: 24px;
+            border-radius: 3px;
+            border: 2px solid #007aff;
+            background: transparent;
+        }
+
+        .paper-icon::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 2px;
+            background: #007aff;
+            top: 16px;
+            border-radius: 1px;
+            box-shadow: 0 4px 0 #007aff, 0 8px 0 #007aff;
         }
 
         .problem-title {
@@ -503,7 +563,7 @@
             <p class="hero-subheadline fade-in">Your customers deserve better than wondering if you showed up. Your business deserves better than missed opportunities.</p>
             <div class="fade-in">
                 <a href="signup.html" class="hero-cta">Start Free Trial</a>
-                <a href="demo.html" class="hero-cta-secondary">Schedule Demo</a>
+                <a href="demo.html" class="hero-cta-secondary">Watch Demo Video</a>
             </div>
         </div>
     </section>
@@ -513,17 +573,23 @@
             <h2 class="problem-headline animate-on-scroll">The industry hasn't evolved.</h2>
             <div class="problem-grid">
                 <div class="problem-item animate-on-scroll">
-                    <div class="problem-visual">📞</div>
+                    <div class="problem-visual">
+                        <div class="problem-icon phone-icon"></div>
+                    </div>
                     <h3 class="problem-title">Constant Interruptions</h3>
                     <p class="problem-description">Every "Did you come today?" call wastes your time and questions your professionalism.</p>
                 </div>
                 <div class="problem-item animate-on-scroll">
-                    <div class="problem-visual">💸</div>
+                    <div class="problem-visual">
+                        <div class="problem-icon money-icon"></div>
+                    </div>
                     <h3 class="problem-title">Revenue Left Behind</h3>
                     <p class="problem-description">Broken equipment goes unnoticed. Maintenance opportunities become someone else's profit.</p>
                 </div>
                 <div class="problem-item animate-on-scroll">
-                    <div class="problem-visual">📄</div>
+                    <div class="problem-visual">
+                        <div class="problem-icon paper-icon"></div>
+                    </div>
                     <h3 class="problem-title">Paper Route Sheets</h3>
                     <p class="problem-description">Soggy, lost, illegible. There has to be a better way to run a professional business.</p>
                 </div>
@@ -597,7 +663,7 @@
             <p class="final-cta-description animate-on-scroll">Stop competing on price. Start competing on professionalism.</p>
             <div class="cta-buttons">
                 <a href="signup.html" class="hero-cta">Start 30-Day Trial</a>
-                <a href="demo.html" class="hero-cta-secondary">Schedule Demo</a>
+                <a href="demo.html" class="hero-cta-secondary">Watch Demo Video</a>
             </div>
         </div>
     </section>
