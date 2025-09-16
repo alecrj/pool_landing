@@ -391,17 +391,6 @@
                             <input type="text" id="companyName" name="companyName" class="form-input" placeholder="Blue Wave Pool Service" required>
                         </div>
 
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" id="firstName" name="firstName" class="form-input" placeholder="John" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Smith" required>
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <label for="email" class="form-label">Email Address</label>
                             <input type="email" id="email" name="email" class="form-input" placeholder="john@bluewavepool.com" required>
@@ -410,31 +399,6 @@
                         <div class="form-group">
                             <label for="phone" class="form-label">Phone Number</label>
                             <input type="tel" id="phone" name="phone" class="form-input" placeholder="(555) 123-4567" required>
-                        </div>
-
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="techCount" class="form-label">Number of Technicians</label>
-                                <select id="techCount" name="techCount" class="form-select" required>
-                                    <option value="">Select...</option>
-                                    <option value="1">1 technician</option>
-                                    <option value="2">2 technicians</option>
-                                    <option value="3">3 technicians</option>
-                                    <option value="4-5">4-5 technicians</option>
-                                    <option value="6+">6+ technicians</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="customerCount" class="form-label">Number of Customers</label>
-                                <select id="customerCount" name="customerCount" class="form-select" required>
-                                    <option value="">Select...</option>
-                                    <option value="1-25">1-25 customers</option>
-                                    <option value="26-50">26-50 customers</option>
-                                    <option value="51-100">51-100 customers</option>
-                                    <option value="101-200">101-200 customers</option>
-                                    <option value="200+">200+ customers</option>
-                                </select>
-                            </div>
                         </div>
 
                         <button type="submit" class="form-submit">Start Free Trial</button>
@@ -463,7 +427,7 @@
             const data = Object.fromEntries(formData);
 
             // Simple validation
-            if (!data.companyName || !data.email || !data.firstName || !data.lastName || !data.techCount || !data.customerCount) {
+            if (!data.companyName || !data.email || !data.phone) {
                 e.preventDefault();
                 alert('Please fill in all required fields.');
                 return;
