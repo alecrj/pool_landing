@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - BlueView</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.4;
+            color: #1d1d1f;
+            background: #f5f5f7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 12px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-size: 17px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #007aff;
+        }
+
+        .cta-header {
+            background: #007aff;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 17px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-header:hover {
+            background: #0056cc;
+            transform: scale(1.02);
+        }
+
+        /* Main Section */
+        .contact-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 0 80px;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .contact-content {
+            color: #1d1d1f;
+        }
+
+        .contact-eyebrow {
+            font-size: 19px;
+            color: #007aff;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-headline {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.0;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .contact-description {
+            font-size: 21px;
+            color: #86868b;
+            margin-bottom: 40px;
+            line-height: 1.4;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            font-size: 19px;
+            color: #1d1d1f;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: #f5f5f7;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .contact-details p {
+            color: #86868b;
+            font-size: 17px;
+        }
+
+        /* Form Styles */
+        .contact-form-container {
+            background: white;
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-headline {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 8px;
+            color: #1d1d1f;
+        }
+
+        .form-description {
+            font-size: 17px;
+            color: #86868b;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 17px;
+            font-weight: 500;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #d1d1d6;
+            border-radius: 12px;
+            font-size: 17px;
+            background: #fff;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #007aff;
+        }
+
+        .form-input::placeholder {
+            color: #86868b;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #d1d1d6;
+            border-radius: 12px;
+            font-size: 17px;
+            background: #fff;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #007aff;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #d1d1d6;
+            border-radius: 12px;
+            font-size: 17px;
+            background: #fff;
+            transition: border-color 0.3s ease;
+            resize: vertical;
+            min-height: 120px;
+            font-family: inherit;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: #007aff;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: #007aff;
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 19px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .form-submit:hover {
+            background: #0056cc;
+            transform: translateY(-1px);
+        }
+
+        .form-note {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 15px;
+            color: #86868b;
+        }
+
+        .success-message {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-headline {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-form-container {
+                padding: 32px 24px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">BlueView</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="how-it-works.html">How it Works</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="demo.html">Demo</a></li>
+                </ul>
+                <a href="signup.html" class="cta-header">Try Free</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-content">
+                    <div class="contact-eyebrow">Get in Touch</div>
+                    <h1 class="contact-headline">Let's talk about your pool business.</h1>
+                    <p class="contact-description">Have questions about BlueView? Want to see how it can transform your operations? We're here to help.</p>
+
+                    <ul class="contact-info">
+                        <li class="contact-item">
+                            <div class="contact-icon">=ç</div>
+                            <div class="contact-details">
+                                <h4>Email Us</h4>
+                                <p>support@blueview.app</p>
+                            </div>
+                        </li>
+                        <li class="contact-item">
+                            <div class="contact-icon">=Þ</div>
+                            <div class="contact-details">
+                                <h4>Call Us</h4>
+                                <p>(555) 123-BLUE</p>
+                            </div>
+                        </li>
+                        <li class="contact-item">
+                            <div class="contact-icon">ð</div>
+                            <div class="contact-details">
+                                <h4>Business Hours</h4>
+                                <p>Mon-Fri 8AM-6PM PST</p>
+                            </div>
+                        </li>
+                        <li class="contact-item">
+                            <div class="contact-icon">=€</div>
+                            <div class="contact-details">
+                                <h4>Quick Start</h4>
+                                <p>Most questions answered in 24 hours</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="contact-form-container">
+                    <div class="success-message" id="success-message">
+                        Thank you! We'll get back to you within 24 hours.
+                    </div>
+
+                    <h2 class="form-headline">Send us a message</h2>
+                    <p class="form-description">We typically respond within 24 hours.</p>
+
+                    <!-- Netlify Form with all required attributes -->
+                    <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" id="contactForm">
+                        <!-- Hidden honeypot field for spam protection -->
+                        <input type="hidden" name="form-name" value="contact" />
+                        <div style="display: none;">
+                            <label>Don't fill this out: <input name="bot-field" /></label>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input" placeholder="John" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Smith" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="companyName" class="form-label">Company Name</label>
+                                <input type="text" id="companyName" name="companyName" class="form-input" placeholder="Blue Wave Pool Service">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="(555) 123-4567">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inquiryType" class="form-label">How can we help?</label>
+                            <select id="inquiryType" name="inquiryType" class="form-select" required>
+                                <option value="">Select inquiry type...</option>
+                                <option value="general">General Information</option>
+                                <option value="demo">Schedule a Demo</option>
+                                <option value="pricing">Pricing Questions</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="partnership">Partnership Opportunities</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your pool service business and how we can help you grow..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="form-submit">Send Message</button>
+
+                        <div class="form-note">
+                            We'll respond within 24 hours during business days.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            // Let Netlify handle the form submission naturally
+            // We'll just show a success message after submission
+
+            // Get form data for validation
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            // Simple validation
+            if (!data.firstName || !data.lastName || !data.email || !data.inquiryType || !data.message) {
+                e.preventDefault();
+                alert('Please fill in all required fields.');
+                return;
+            }
+        });
+
+        // Phone number formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 6) {
+                value = value.substring(0,3) + '-' + value.substring(3,6) + '-' + value.substring(6,10);
+            } else if (value.length >= 3) {
+                value = value.substring(0,3) + '-' + value.substring(3,6);
+            }
+            e.target.value = value;
+        });
+
+        // Show success message if coming from Netlify success redirect
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'true') {
+            document.getElementById('success-message').style.display = 'block';
+            document.getElementById('contactForm').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

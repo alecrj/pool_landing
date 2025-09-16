@@ -4,6 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start Free Trial - BlueView</title>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+
+    <!-- Facebook Pixel -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+    /></noscript>
     <style>
         * {
             margin: 0;
@@ -353,7 +379,13 @@
                     <h2 class="form-headline">Start Your Free Trial</h2>
                     <p class="form-description">No credit card required. Cancel anytime.</p>
                     
-                    <form id="signupForm">
+                    <!-- Netlify Form with all required attributes -->
+                    <form name="signup" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/trial-success.html" id="signupForm">
+                        <!-- Hidden honeypot field for spam protection -->
+                        <input type="hidden" name="form-name" value="signup" />
+                        <div style="display: none;">
+                            <label>Don't fill this out: <input name="bot-field" /></label>
+                        </div>
                         <div class="form-group">
                             <label for="companyName" class="form-label">Company Name</label>
                             <input type="text" id="companyName" name="companyName" class="form-input" placeholder="Blue Wave Pool Service" required>
@@ -423,24 +455,40 @@
 
     <script>
         document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
+            // Let Netlify handle the form submission naturally
+            // We'll add tracking and follow-up actions
+
+            // Get form data for validation and tracking
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
-            
+
             // Simple validation
-            if (!data.companyName || !data.email || !data.firstName || !data.lastName) {
+            if (!data.companyName || !data.email || !data.firstName || !data.lastName || !data.techCount || !data.customerCount) {
+                e.preventDefault();
                 alert('Please fill in all required fields.');
                 return;
             }
-            
-            // For now, just show success message
-            // In production, you'd send this to your backend
-            alert('Thank you! We\'ll send you setup instructions within 24 hours.');
-            
-            // Clear form
-            this.reset();
+
+            // Track trial signup with Google Analytics (if loaded)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'trial_signup', {
+                    'event_category': 'conversion',
+                    'event_label': data.companyName,
+                    'value': 1
+                });
+            }
+
+            // Track Facebook conversion (if loaded)
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'StartTrial', {
+                    value: 40.00,
+                    currency: 'USD',
+                    content_name: 'BlueView Trial'
+                });
+            }
+
+            // Show success message immediately (Netlify will handle the redirect)
+            alert('🎉 Welcome to BlueView! You\'ll receive setup instructions within 24 hours. Check your email for next steps.');
         });
 
         // Phone number formatting

@@ -433,7 +433,13 @@
                     <h2 class="form-headline">Schedule Your Demo</h2>
                     <p class="form-description">We'll contact you within 24 hours to schedule.</p>
                     
-                    <form id="demoForm">
+                    <!-- Netlify Form with all required attributes -->
+                    <form name="demo" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" id="demoForm">
+                        <!-- Hidden honeypot field for spam protection -->
+                        <input type="hidden" name="form-name" value="demo" />
+                        <div style="display: none;">
+                            <label>Don't fill this out: <input name="bot-field" /></label>
+                        </div>
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="firstName" class="form-label">First Name</label>
@@ -489,11 +495,24 @@
                         </div>
 
                         <button type="submit" class="form-submit">Schedule Demo</button>
-                        
+
                         <div class="form-note">
                             We'll contact you within 24 hours to confirm your demo time.
                         </div>
                     </form>
+
+                    <!-- Google Calendar Integration -->
+                    <div id="calendar-container" style="display: none; margin-top: 24px;">
+                        <div style="text-align: center; margin-bottom: 16px;">
+                            <strong>Or schedule directly:</strong>
+                        </div>
+                        <iframe id="google-calendar-iframe"
+                                src=""
+                                style="border: 0; width: 100%; height: 400px; border-radius: 12px;"
+                                frameborder="0"
+                                scrolling="no">
+                        </iframe>
+                    </div>
 
                     <div class="alternative-cta">
                         <div class="alternative-text">Prefer to try it yourself first?</div>
@@ -505,26 +524,100 @@
     </section>
 
     <script>
+        // Google Calendar Configuration
+        const GOOGLE_CALENDAR_CONFIG = {
+            // Replace with your actual Google Calendar booking page URL
+            // Example: https://calendar.google.com/calendar/appointments/schedules/AcZssZ2FER4j8yzM3_hMVP
+            calendarUrl: 'https://calendar.google.com/calendar/appointments/schedules/YOUR_SCHEDULE_ID',
+            // You can also use Google Calendar embed URL for a specific calendar
+            embedUrl: 'https://calendar.google.com/calendar/embed?src=YOUR_EMAIL@gmail.com&ctz=America/New_York'
+        };
+
         document.getElementById('demoForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             // Get form data
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
-            
+
             // Simple validation
             if (!data.firstName || !data.lastName || !data.email || !data.companyName) {
                 alert('Please fill in all required fields.');
                 return;
             }
-            
-            // For now, just show success message
-            // In production, you'd send this to your backend and schedule via calendar API
-            alert('Thank you! We\'ll contact you within 24 hours to schedule your personalized demo.');
-            
-            // Clear form
-            this.reset();
+
+            // Create Google Calendar event URL with pre-filled data
+            const eventDetails = {
+                text: `BlueView Demo - ${data.companyName}`,
+                details: `Demo for ${data.firstName} ${data.lastName} from ${data.companyName}\n\nContact: ${data.email}\nPhone: ${data.phone}\nBusiness Size: ${data.businessSize}\nPreferred Time: ${data.timePreference}\n\nChallenges: ${data.challenges || 'None specified'}`,
+                location: 'Video Call (link will be provided)',
+                dates: '', // Will be set when user selects time
+            };
+
+            // For production, send this to your backend for processing
+            // For now, show success and provide calendar link
+            showCalendarBooking(data);
         });
+
+        function showCalendarBooking(formData) {
+            // Hide the form and show calendar
+            document.getElementById('demoForm').style.display = 'none';
+            document.getElementById('calendar-container').style.display = 'block';
+
+            // Set the calendar iframe source
+            const iframe = document.getElementById('google-calendar-iframe');
+
+            // Option 1: Use Google Calendar Appointment Schedules (recommended for businesses)
+            if (GOOGLE_CALENDAR_CONFIG.calendarUrl !== 'https://calendar.google.com/calendar/appointments/schedules/YOUR_SCHEDULE_ID') {
+                iframe.src = GOOGLE_CALENDAR_CONFIG.calendarUrl;
+            } else {
+                // Option 2: Create a new Google Calendar event with pre-filled data
+                const startDate = new Date();
+                startDate.setDate(startDate.getDate() + 1); // Tomorrow
+                startDate.setHours(10, 0, 0, 0); // 10 AM
+
+                const endDate = new Date(startDate);
+                endDate.setMinutes(endDate.getMinutes() + 30); // 30-minute demo
+
+                const calendarUrl = createGoogleCalendarEventUrl({
+                    title: `BlueView Demo - ${formData.companyName}`,
+                    start: startDate,
+                    end: endDate,
+                    description: `Demo for ${formData.firstName} ${formData.lastName} from ${formData.companyName}\\n\\nContact: ${formData.email}\\nPhone: ${formData.phone}\\nBusiness Size: ${formData.businessSize}\\nPreferred Time: ${formData.timePreference}\\n\\nChallenges: ${formData.challenges || 'None specified'}`,
+                    location: 'Video Call'
+                });
+
+                // Show link to add to calendar
+                document.getElementById('calendar-container').innerHTML = `
+                    <div style="text-align: center; padding: 20px;">
+                        <h3 style="color: #1d1d1f; margin-bottom: 16px;">Thank You!</h3>
+                        <p style="margin-bottom: 20px; color: #86868b;">We'll contact you within 24 hours to schedule your demo.</p>
+                        <p style="margin-bottom: 20px;">Or add a tentative demo to your calendar:</p>
+                        <a href="${calendarUrl}" target="_blank"
+                           style="display: inline-block; background: #007aff; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600;">
+                            Add to Google Calendar
+                        </a>
+                    </div>
+                `;
+            }
+        }
+
+        function createGoogleCalendarEventUrl(event) {
+            const formatDate = (date) => {
+                return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+            };
+
+            const params = new URLSearchParams({
+                action: 'TEMPLATE',
+                text: event.title,
+                dates: `${formatDate(event.start)}/${formatDate(event.end)}`,
+                details: event.description,
+                location: event.location,
+                trp: 'false'
+            });
+
+            return `https://calendar.google.com/calendar/render?${params.toString()}`;
+        }
 
         // Phone number formatting
         document.getElementById('phone').addEventListener('input', function(e) {
@@ -536,6 +629,20 @@
             }
             e.target.value = value;
         });
+
+        // Toggle calendar view
+        function toggleCalendarView() {
+            const container = document.getElementById('calendar-container');
+            const form = document.getElementById('demoForm');
+
+            if (container.style.display === 'none') {
+                container.style.display = 'block';
+                form.style.display = 'none';
+            } else {
+                container.style.display = 'none';
+                form.style.display = 'block';
+            }
+        }
     </script>
 </body>
 </html>

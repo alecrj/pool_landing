@@ -3,7 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoolPro - Rethink Pool Service</title>
+    <title>BlueView - Rethink Pool Service</title>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+
+    <!-- Facebook Pixel -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+    /></noscript>
     <style>
         * {
             margin: 0;
@@ -114,7 +140,7 @@
         .hero-headline {
             font-size: 80px;
             font-weight: 700;
-            line-height: 0.9;
+            line-height: 1.1;
             margin-bottom: 24px;
             letter-spacing: -2px;
             background: linear-gradient(135deg, #fff 0%, #007aff 100%);
@@ -459,13 +485,13 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">PoolPro</div>
+                <div class="logo">BlueView</div>
                 <ul class="nav-links">
                     <li><a href="#solution">Features</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
-                <a href="#trial" class="cta-header">Try Free</a>
+                <a href="signup.html" class="cta-header">Try Free</a>
             </nav>
         </div>
     </header>
@@ -476,8 +502,8 @@
             <h1 class="hero-headline fade-in">Rethink Everything</h1>
             <p class="hero-subheadline fade-in">Your customers deserve better than wondering if you showed up. Your business deserves better than missed opportunities.</p>
             <div class="fade-in">
-                <a href="#trial" class="hero-cta">Transform Your Business</a>
-                <a href="#problem" class="hero-cta-secondary">See How</a>
+                <a href="signup.html" class="hero-cta">Start Free Trial</a>
+                <a href="demo.html" class="hero-cta-secondary">Schedule Demo</a>
             </div>
         </div>
     </section>
@@ -507,8 +533,8 @@
 
     <section class="solution" id="solution">
         <div class="container">
-            <h2 class="solution-headline animate-on-scroll">Now there is.</h2>
-            <p class="solution-description animate-on-scroll">PoolPro transforms every service visit into professional customer communication and revenue opportunities.</p>
+            <h2 class="solution-headline animate-on-scroll">Until now.</h2>
+            <p class="solution-description animate-on-scroll">BlueView transforms every service visit into professional customer communication and revenue opportunities.</p>
             
             <div class="feature-showcase">
                 <div class="feature-content animate-on-scroll">
@@ -570,8 +596,8 @@
             <h2 class="final-cta-headline animate-on-scroll">Ready to lead your market?</h2>
             <p class="final-cta-description animate-on-scroll">Stop competing on price. Start competing on professionalism.</p>
             <div class="cta-buttons">
-                <a href="#" class="hero-cta">Start 30-Day Trial</a>
-                <a href="#" class="hero-cta-secondary">Schedule Demo</a>
+                <a href="signup.html" class="hero-cta">Start 30-Day Trial</a>
+                <a href="demo.html" class="hero-cta-secondary">Schedule Demo</a>
             </div>
         </div>
     </section>
