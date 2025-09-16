@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How it Works - BlueView</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.4;
+            color: #1d1d1f;
+            background: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 12px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-size: 17px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #007aff;
+        }
+
+        .cta-header {
+            background: #007aff;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 17px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-header:hover {
+            background: #0056cc;
+            transform: scale(1.02);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: #f5f5f7;
+        }
+
+        .hero-headline {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.0;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            color: #1d1d1f;
+        }
+
+        .hero-subheadline {
+            font-size: 28px;
+            font-weight: 400;
+            color: #86868b;
+            max-width: 700px;
+            margin: 0 auto 48px;
+            line-height: 1.3;
+        }
+
+        /* Process Flow */
+        .process-flow {
+            padding: 120px 0;
+            background: #fff;
+        }
+
+        .process-headline {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 64px;
+            color: #1d1d1f;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 80px;
+            margin-bottom: 120px;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 60px;
+            right: -40px;
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, #007aff, rgba(0, 122, 255, 0));
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 120px;
+            height: 120px;
+            background: #007aff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 32px;
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .step-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1d1d1f;
+        }
+
+        .step-description {
+            font-size: 19px;
+            color: #86868b;
+            line-height: 1.4;
+        }
+
+        /* Detailed Sections */
+        .detailed-section {
+            padding: 120px 0;
+            background: #f5f5f7;
+        }
+
+        .detailed-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 120px;
+        }
+
+        .detailed-container:last-child {
+            margin-bottom: 0;
+        }
+
+        .detailed-content h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #1d1d1f;
+            line-height: 1.0;
+        }
+
+        .detailed-content p {
+            font-size: 21px;
+            color: #86868b;
+            margin-bottom: 32px;
+            line-height: 1.4;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            font-size: 19px;
+            color: #1d1d1f;
+        }
+
+        .feature-check {
+            width: 24px;
+            height: 24px;
+            background: #007aff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .detailed-visual {
+            background: #fff;
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .visual-content {
+            width: 100%;
+        }
+
+        .visual-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 24px;
+        }
+
+        .mockup-element {
+            background: #f5f5f7;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 4px solid #007aff;
+        }
+
+        .mockup-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+
+        .mockup-subtitle {
+            font-size: 14px;
+            color: #86868b;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 120px 0;
+            background: #000;
+            color: white;
+            text-align: center;
+        }
+
+        .benefits-headline {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.0;
+        }
+
+        .benefits-subheadline {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 80px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 80px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .benefit {
+            text-align: center;
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: #007aff;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 32px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .benefit-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .benefit-description {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 120px 0;
+            background: #f5f5f7;
+            text-align: center;
+        }
+
+        .final-cta-headline {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.0;
+            margin-bottom: 32px;
+            color: #1d1d1f;
+        }
+
+        .final-cta-description {
+            font-size: 24px;
+            color: #86868b;
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 48px;
+            line-height: 1.3;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            background: #007aff;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 21px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-primary:hover {
+            background: #0056cc;
+            transform: scale(1.05);
+        }
+
+        .cta-secondary {
+            color: #007aff;
+            text-decoration: none;
+            font-size: 21px;
+            font-weight: 500;
+            padding: 18px 40px;
+            transition: color 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            color: #0056cc;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .process-steps,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .detailed-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .process-step::after {
+                display: none;
+            }
+
+            .hero-headline {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-headline {
+                font-size: 40px;
+            }
+
+            .hero-subheadline {
+                font-size: 24px;
+            }
+
+            .detailed-visual {
+                padding: 32px 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .animate-on-scroll.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">BlueView</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="how-it-works.html">How it Works</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <a href="signup.html" class="cta-header">Try Free</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-headline">Simple by design.</h1>
+            <p class="hero-subheadline">Three simple steps transform every pool service visit into professional customer communication and revenue opportunities.</p>
+        </div>
+    </section>
+
+    <section class="process-flow">
+        <div class="container">
+            <h2 class="process-headline animate-on-scroll">The BlueView Process</h2>
+            <div class="process-steps">
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Service & Capture</h3>
+                    <p class="step-description">Technician completes pool service and takes a quick photo with automatic timestamp. Log chemicals used with preset buttons.</p>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Analyze & Alert</h3>
+                    <p class="step-description">System flags equipment issues for follow-up sales. Customer receives instant service confirmation with photo.</p>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Track & Grow</h3>
+                    <p class="step-description">Dashboard shows real-time progress. Happy customers automatically receive review requests to build your reputation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="detailed-section">
+        <div class="container">
+            <div class="detailed-container">
+                <div class="detailed-content animate-on-scroll">
+                    <h2>Technician Experience</h2>
+                    <p>Designed for speed and simplicity. Techs complete each stop in under 60 seconds with a workflow that's faster than paper route sheets.</p>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div>Today's route in order with navigation links</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div>One-tap photo capture with auto-timestamp</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div>Chemical presets (1/4, 1/2, 1, 2 jugs/tabs)</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div>Equipment flagging for maintenance opportunities</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div>Works offline, syncs when connected</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="detailed-visual animate-on-scroll">
+                    <div class="visual-content">
+                        <div class="visual-title">Mobile App Interface</div>
+                        <div class="mockup-element">
+                            <div class="mockup-title">Miller Pool - Next Stop</div>
+                            <div class="mockup-subtitle">123 Palm Ave • Gate: Press & Hold</div>
+                        </div>
+                        <div class="mockup-element">
+                            <div class="mockup-title">Johnson Pool - Completed</div>
+                            <div class="mockup-subtitle">Service at 2:47 PM • Photo Sent</div>
+                        </div>
+                        <div class="mockup-element">
+                            <div class="mockup-title">Davis Pool - Pending</div>
+                            <div class="mockup-subtitle">456 Ocean Dr • Note: Dog in yard</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detailed-container">
+                <div class="detailed-visual animate-on-scroll">
+                    <div class="visual-content">
+                        <div class="visual-title">Owner Dashboard</div>
+                        <div class="mockup-element">
+                            <div class="mockup-title">Mike - 6/8 Complete</div>
+                            <div class="mockup-subtitle">Current: Wilson Pool • 3 Equipment Alerts</div>
+                        </div>
+                        <div class="mockup-element">
+                            <div class="mockup-title">Sarah - 4/5 Complete</div>
+                            <div class="mockup-subtitle">Current: Garcia Pool • 1 Equipment Alert</div>
+                        </div>
+                        <div class="mockup-element">
+                            <div class="mockup-title">Revenue Opportunities</div>
+                            <div class="mockup-subtitle">4 filters need replacement • 2 pump services</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="detailed-content animate-on-scroll">
+                    <h2>Owner Oversight</h2>
+                    <p>Real-time visibility into your entire operation without micromanaging. See route progress, equipment opportunities, and customer satisfaction at a glance.</p>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div>Live route progress across all technicians</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div>Equipment maintenance revenue tracking</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div>Customer satisfaction monitoring</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div>Chemical usage analytics and cost control</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div>Professional customer communications</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="detailed-container">
+                <div class="detailed-content animate-on-scroll">
+                    <h2>Customer Experience</h2>
+                    <p>Your customers receive instant peace of mind with professional service confirmations. No more "did you come today?" phone calls.</p>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div>Instant SMS/email with service photo</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div>Service history with photo timeline</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div>One-click satisfaction ratings</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div>Automated review generation</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div>White-label experience with your branding</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="detailed-visual animate-on-scroll">
+                    <div class="visual-content">
+                        <div class="visual-title">Customer Notification</div>
+                        <div class="mockup-element">
+                            <div class="mockup-title">Pool Serviced Today</div>
+                            <div class="mockup-subtitle">Completed at 2:47 PM • View Photo</div>
+                        </div>
+                        <div class="mockup-element">
+                            <div class="mockup-title">Rate Your Service</div>
+                            <div class="mockup-subtitle">😊 😐 😞 • Leave Review</div>
+                        </div>
+                        <div class="mockup-element">
+                            <div class="mockup-title">Service History</div>
+                            <div class="mockup-subtitle">View all previous services with photos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <h2 class="benefits-headline animate-on-scroll">The results speak for themselves.</h2>
+            <p class="benefits-subheadline animate-on-scroll">Pool service companies using BlueView report immediate improvements in customer satisfaction and revenue opportunities.</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit animate-on-scroll">
+                    <div class="benefit-icon">%</div>
+                    <h3 class="benefit-title">Fewer Customer Calls</h3>
+                    <p class="benefit-description">Professional photo confirmations eliminate "did you come today?" interruptions.</p>
+                </div>
+                <div class="benefit animate-on-scroll">
+                    <div class="benefit-icon">$</div>
+                    <h3 class="benefit-title">More Revenue</h3>
+                    <p class="benefit-description">Equipment tracking helps capture maintenance opportunities that were previously missed.</p>
+                </div>
+                <div class="benefit animate-on-scroll">
+                    <div class="benefit-icon">★</div>
+                    <h3 class="benefit-title">Better Reviews</h3>
+                    <p class="benefit-description">Automated review requests from satisfied customers build your online reputation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="final-cta-headline animate-on-scroll">Ready to transform your business?</h2>
+            <p class="final-cta-description animate-on-scroll">Join pool service companies who've upgraded their customer experience and grown their revenue.</p>
+            <div class="cta-buttons">
+                <a href="signup.html" class="cta-primary">Start 30-Day Free Trial</a>
+                <a href="demo.html" class="cta-secondary">Schedule Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animate-on-scroll elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

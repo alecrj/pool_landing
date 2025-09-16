@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Free Trial - BlueView</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.4;
+            color: #1d1d1f;
+            background: #f5f5f7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 12px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-size: 17px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #007aff;
+        }
+
+        /* Main Section */
+        .signup-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 0 80px;
+        }
+
+        .signup-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .signup-content {
+            color: #1d1d1f;
+        }
+
+        .signup-eyebrow {
+            font-size: 19px;
+            color: #007aff;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .signup-headline {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.0;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .signup-description {
+            font-size: 21px;
+            color: #86868b;
+            margin-bottom: 32px;
+            line-height: 1.4;
+        }
+
+        .benefit-list {
+            list-style: none;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            font-size: 19px;
+            color: #1d1d1f;
+        }
+
+        .benefit-check {
+            width: 24px;
+            height: 24px;
+            background: #007aff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        /* Form Styles */
+        .signup-form-container {
+            background: white;
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-headline {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 8px;
+            color: #1d1d1f;
+        }
+
+        .form-description {
+            font-size: 17px;
+            color: #86868b;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 17px;
+            font-weight: 500;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #d1d1d6;
+            border-radius: 12px;
+            font-size: 17px;
+            background: #fff;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #007aff;
+        }
+
+        .form-input::placeholder {
+            color: #86868b;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #d1d1d6;
+            border-radius: 12px;
+            font-size: 17px;
+            background: #fff;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #007aff;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: #007aff;
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 19px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .form-submit:hover {
+            background: #0056cc;
+            transform: translateY(-1px);
+        }
+
+        .form-note {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 15px;
+            color: #86868b;
+        }
+
+        .form-link {
+            color: #007aff;
+            text-decoration: none;
+        }
+
+        .form-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Security Note */
+        .security-note {
+            background: #f5f5f7;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .security-note-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+
+        .security-note-text {
+            font-size: 15px;
+            color: #86868b;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .signup-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .signup-headline {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .signup-form-container {
+                padding: 32px 24px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">BlueView</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="how-it-works.html">How it Works</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="signup-section">
+        <div class="container">
+            <div class="signup-container">
+                <div class="signup-content">
+                    <div class="signup-eyebrow">30-Day Free Trial</div>
+                    <h1 class="signup-headline">Transform your business today.</h1>
+                    <p class="signup-description">Join pool service companies who've upgraded their customer experience and grown their revenue with BlueView.</p>
+                    
+                    <ul class="benefit-list">
+                        <li class="benefit-item">
+                            <div class="benefit-check">✓</div>
+                            <div>Professional photo confirmations to every customer</div>
+                        </li>
+                        <li class="benefit-item">
+                            <div class="benefit-check">✓</div>
+                            <div>Equipment tracking for additional revenue</div>
+                        </li>
+                        <li class="benefit-item">
+                            <div class="benefit-check">✓</div>
+                            <div>Automated review generation system</div>
+                        </li>
+                        <li class="benefit-item">
+                            <div class="benefit-check">✓</div>
+                            <div>Real-time route management dashboard</div>
+                        </li>
+                        <li class="benefit-item">
+                            <div class="benefit-check">✓</div>
+                            <div>Complete setup support included</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="signup-form-container">
+                    <h2 class="form-headline">Start Your Free Trial</h2>
+                    <p class="form-description">No credit card required. Cancel anytime.</p>
+                    
+                    <form id="signupForm">
+                        <div class="form-group">
+                            <label for="companyName" class="form-label">Company Name</label>
+                            <input type="text" id="companyName" name="companyName" class="form-input" placeholder="Blue Wave Pool Service" required>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input" placeholder="John" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Smith" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="john@bluewavepool.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-input" placeholder="(555) 123-4567" required>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="techCount" class="form-label">Number of Technicians</label>
+                                <select id="techCount" name="techCount" class="form-select" required>
+                                    <option value="">Select...</option>
+                                    <option value="1">1 technician</option>
+                                    <option value="2">2 technicians</option>
+                                    <option value="3">3 technicians</option>
+                                    <option value="4-5">4-5 technicians</option>
+                                    <option value="6+">6+ technicians</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerCount" class="form-label">Number of Customers</label>
+                                <select id="customerCount" name="customerCount" class="form-select" required>
+                                    <option value="">Select...</option>
+                                    <option value="1-25">1-25 customers</option>
+                                    <option value="26-50">26-50 customers</option>
+                                    <option value="51-100">51-100 customers</option>
+                                    <option value="101-200">101-200 customers</option>
+                                    <option value="200+">200+ customers</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="form-submit">Start Free Trial</button>
+                        
+                        <div class="form-note">
+                            By signing up, you agree to our <a href="#" class="form-link">Terms of Service</a> and <a href="#" class="form-link">Privacy Policy</a>
+                        </div>
+                    </form>
+
+                    <div class="security-note">
+                        <div class="security-note-title">Your information is secure</div>
+                        <div class="security-note-text">We use industry-standard encryption to protect your data. No credit card required for trial.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.companyName || !data.email || !data.firstName || !data.lastName) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // For now, just show success message
+            // In production, you'd send this to your backend
+            alert('Thank you! We\'ll send you setup instructions within 24 hours.');
+            
+            // Clear form
+            this.reset();
+        });
+
+        // Phone number formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 6) {
+                value = value.substring(0,3) + '-' + value.substring(3,6) + '-' + value.substring(6,10);
+            } else if (value.length >= 3) {
+                value = value.substring(0,3) + '-' + value.substring(3,6);
+            }
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>
