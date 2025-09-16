@@ -85,8 +85,8 @@ async function createInstantTrial({ companyName, email, phone }) {
         onboardingStep: 'download_app'
     });
 
-    // Pre-load sample data
-    await createSampleData(user.id);
+    // Initialize empty account ready for real customers
+    await initializeTrialAccount(user.id);
 
     return {
         ...user,
@@ -95,35 +95,34 @@ async function createInstantTrial({ companyName, email, phone }) {
     };
 }
 
-async function createSampleData(userId) {
-    // Create 5 sample customers
-    const sampleCustomers = [
-        { name: 'Sarah Johnson', address: '123 Oak Street', phone: '(555) 111-2222' },
-        { name: 'Mike Chen', address: '456 Pine Avenue', phone: '(555) 333-4444' },
-        { name: 'Lisa Rodriguez', address: '789 Elm Drive', phone: '(555) 555-6666' },
-        { name: 'Tom Wilson', address: '321 Maple Lane', phone: '(555) 777-8888' },
-        { name: 'Amy Davis', address: '654 Cedar Way', phone: '(555) 999-0000' }
-    ];
-
-    for (const customer of sampleCustomers) {
-        await Customer.create({
-            userId: userId,
-            ...customer,
-            serviceFrequency: 'weekly',
-            poolType: 'residential',
-            isDemo: true, // Mark as demo data
-            createdAt: new Date()
-        });
-    }
-
-    // Create today's route
-    await Route.create({
+async function initializeTrialAccount(userId) {
+    // Set up trial limitations and permissions
+    await TrialLimitations.create({
         userId: userId,
-        name: 'Today\'s Route',
-        date: new Date(),
-        status: 'ready',
-        customerIds: sampleCustomers.map(c => c.id),
-        isDemo: true
+        maxCustomers: 50,
+        maxTechnicians: 2,
+        featuresEnabled: {
+            routeManagement: true,
+            photoConfirmations: true,
+            equipmentTracking: true,
+            customerNotifications: true,
+            basicReporting: true
+        },
+        featuresDisabled: {
+            customBranding: true,
+            advancedReporting: true,
+            apiAccess: true,
+            unlimitedStorage: true
+        }
+    });
+
+    // Create welcome notification for first app open
+    await Notification.create({
+        userId: userId,
+        type: 'welcome',
+        title: 'Welcome to BlueView!',
+        message: 'Ready to add your first customer? Tap the + button to get started.',
+        isRead: false
     });
 }
 ```

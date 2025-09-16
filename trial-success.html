@@ -246,37 +246,37 @@
     <div class="container">
         <div class="success-content">
             <div class="success-icon">🎉</div>
-            <h1 class="success-headline">Your trial is ready!</h1>
-            <h2 class="success-subheadline">Download the app and start in 2 minutes</h2>
+            <h1 class="success-headline">Your BlueView account is ready!</h1>
+            <h2 class="success-subheadline">Download the app and add your first customer</h2>
             <p class="success-description">
-                Your BlueView account is ready to go! Download the app now and complete your first route today.
-                No waiting - your trial starts immediately.
+                Start transforming your pool service business today. Add your real customers, complete actual routes, and see immediate results.
+                30-day trial starts now.
             </p>
 
             <div class="next-steps">
-                <h3>Get started in 3 easy steps:</h3>
+                <h3>Start using BlueView today:</h3>
 
                 <div class="step">
                     <div class="step-number">1</div>
                     <div class="step-content">
                         <h4>Download BlueView App</h4>
-                        <p>Available for iPhone and Android - links sent to your phone!</p>
+                        <p>Available for iPhone and Android - check your phone for download link!</p>
                     </div>
                 </div>
 
                 <div class="step">
                     <div class="step-number">2</div>
                     <div class="step-content">
-                        <h4>Open App & Start Trial</h4>
-                        <p>Your account is pre-configured with sample customers</p>
+                        <h4>Add Your First Customer</h4>
+                        <p>Start with your most important customers and routes</p>
                     </div>
                 </div>
 
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-content">
-                        <h4>Complete Your First Route</h4>
-                        <p>See how BlueView transforms customer communication!</p>
+                        <h4>Complete a Real Service</h4>
+                        <p>Send professional photo confirmations and track equipment</p>
                     </div>
                 </div>
             </div>
@@ -318,13 +318,15 @@
 
             if (/android/i.test(userAgent)) {
                 // Android device - redirect to Google Play Store
+                // TODO: Replace with your actual Google Play Store URL
                 window.open('https://play.google.com/store/apps/details?id=com.blueview.pool', '_blank');
             } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
                 // iOS device - redirect to App Store
+                // TODO: Replace with your actual App Store URL
                 window.open('https://apps.apple.com/app/blueview-pool-service/id123456789', '_blank');
             } else {
-                // Desktop/other - show QR code or text link options
-                alert('📱 Text yourself the download link!\n\nText "BLUEVIEW" to (555) 123-BLUE\n\nOr visit: blueview.app/download');
+                // Desktop/other - show download options
+                alert('📱 Download BlueView:\n\niOS: Search "BlueView" in App Store\nAndroid: Search "BlueView" in Play Store\n\nOr check your phone for the text message with download links!');
             }
 
             // Track download attempt
